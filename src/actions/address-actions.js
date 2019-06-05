@@ -1,54 +1,29 @@
 import {
-	FETCH_RECIPE_FAILURE,
-	FETCH_RECIPE_REQUEST,
-	FETCH_RECIPE_SUCCESS,
-	SELECT_RECIPE,
-	TOGGLE_FAVOURITE,
-	UPDATE_STAR_RATING,
+	FETCH_ADDRESS_FAILURE,
+	FETCH_ADDRESS_REQUEST,
+	FETCH_ADDRESS_SUCCESS
 } from './action-types';
-import {recipeService} from '../services/recipe.service';
+import {addressService} from '../services/address.service';
 
-export function fetchRecipes() {
+export function fetchAddress() {
 	const request = () => ({
-		type: FETCH_RECIPE_REQUEST,
-		payload: {recipes: []},
+		type: FETCH_ADDRESS_REQUEST,
+		payload: {addresses: []},
 	});
-	const success = recipes => ({
-		type: FETCH_RECIPE_SUCCESS,
-		payload: {recipes},
+	const success = addresses => ({
+		type: FETCH_ADDRESS_SUCCESS,
+		payload: {addresses},
 	});
-	const failure = error => ({type: FETCH_RECIPE_FAILURE, payload: {error}});
+	const failure = error => ({type: FETCH_ADDRESS_FAILURE, payload: {error}});
 
 	return dispatch => {
 		dispatch(request());
-
-		recipeService
-			.fetchRecipes()
+		
+		addressService
+			.fetchAddress()
 			.then(
-				recipes => dispatch(success(recipes)),
+				addresses => dispatch(success(addresses)),
 				error => dispatch(failure(error))
 			);
 	};
 }
-
-export const selectRecipe = id => {
-	return (dispatch, getState) => {
-		let {
-			recipes: {recipes = []},
-		} = getState();
-		dispatch({
-			type: SELECT_RECIPE,
-			payload: {selectedRecipe: recipes.find(r => r.id === id) || {}},
-		});
-	};
-};
-
-export const toggleFavourite = id => ({
-	type: TOGGLE_FAVOURITE,
-	payload: {id},
-});
-
-export const setStarRating = id => ({
-	type: UPDATE_STAR_RATING,
-	payload: {id},
-});

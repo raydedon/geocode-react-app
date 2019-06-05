@@ -1,33 +1,21 @@
 import {
-	FETCH_RECIPE_FAILURE,
-	FETCH_RECIPE_REQUEST,
-	FETCH_RECIPE_SUCCESS,
-	TOGGLE_FAVOURITE,
+	FETCH_ADDRESS_FAILURE,
+	FETCH_ADDRESS_REQUEST,
+	FETCH_ADDRESS_SUCCESS,
 } from '../actions/action-types';
 
-export function recipes(state = {}, action) {
+export function address(state = {address: []}, action) {
 	let {type, payload} = action;
 	switch(type) {
-		case FETCH_RECIPE_REQUEST: {
-			return {...state, loadingRecipes: true};
+		case FETCH_ADDRESS_REQUEST: {
+			return {...state, loadingAddress: true};
 		}
-		case FETCH_RECIPE_SUCCESS: {
-			let {recipes = []} = payload;
-			return {...state, recipes, loadingRecipes: false};
+		case FETCH_ADDRESS_SUCCESS: {
+			let {address = []} = payload;
+			return {...state, address, loadingAddress: false};
 		}
-		case FETCH_RECIPE_FAILURE: {
-			return {...state, loadingRecipes: false};
-		}
-		case TOGGLE_FAVOURITE: {
-			let {id} = payload;
-			return {
-				...state,
-				recipes: state.recipes.map(r => {
-					if(r.id !== id) return r;
-					let {favourite = false} = r;
-					return {...r, favourite: !favourite};
-				}),
-			};
+		case FETCH_ADDRESS_FAILURE: {
+			return {...state, loadingAddress: false};
 		}
 		default:
 			return state;

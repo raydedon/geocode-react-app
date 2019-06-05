@@ -1,11 +1,7 @@
 import {combineReducers} from 'redux';
 
-import {recipes} from './recipe.reducer';
-import {user} from './user.reducer';
+import {address} from './address.reducer';
 
-const rootReducer = combineReducers({
-	recipes,
-	user
-});
+const rootReducer = combineReducers({address});
 
 export default rootReducer;

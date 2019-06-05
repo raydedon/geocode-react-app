@@ -1,10 +1,10 @@
-export const recipeService = {
-	fetchRecipes
+export const addressService = {
+	fetchAddress
 };
 
-function fetchRecipes() {
-	return fetch('http://localhost:5000/api/recipes')
+function fetchAddress() {
+	return fetch('http://localhost:5000/api/addresses')
 		.then(res => res.json())
-		.then(recipes => recipes);
+		.then(addresses => addresses);
 }
 
