@@ -5,13 +5,13 @@ import {
 } from '../actions/action-types';
 
 export function address(state = {address: []}, action) {
-	let {type, payload} = action;
+	const {type, payload} = action;
 	switch(type) {
 		case FETCH_ADDRESS_REQUEST: {
 			return {...state, loadingAddress: true};
 		}
 		case FETCH_ADDRESS_SUCCESS: {
-			let {address = []} = payload;
+			const {address = []} = payload;
 			return {...state, address, loadingAddress: false};
 		}
 		case FETCH_ADDRESS_FAILURE: {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Address = ({id, title, address, latitude, longitude}) => (
+const Address = ({title, address, latitude, longitude}) => (
 	<div className="address">
 		<h1>{title}</h1>
 		<div className="address-text">{address}</div>

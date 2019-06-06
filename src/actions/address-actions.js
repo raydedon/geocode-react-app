@@ -1,7 +1,7 @@
 import {
 	FETCH_ADDRESS_FAILURE,
 	FETCH_ADDRESS_REQUEST,
-	FETCH_ADDRESS_SUCCESS
+	FETCH_ADDRESS_SUCCESS,
 } from './action-types';
 import {addressService} from '../services/address.service';
 
@@ -16,14 +16,14 @@ export function fetchAddress() {
 	});
 	const failure = error => ({type: FETCH_ADDRESS_FAILURE, payload: {error}});
 
-	return dispatch => {
+	return (dispatch) => {
 		dispatch(request());
-		
+
 		addressService
 			.fetchAddress()
 			.then(
 				addresses => dispatch(success(addresses)),
-				error => dispatch(failure(error))
+				error => dispatch(failure(error)),
 			);
 	};
 }

@@ -1,5 +1,5 @@
 export const addressService = {
-	fetchAddress
+	fetchAddress,
 };
 
 function fetchAddress() {
@@ -7,4 +7,3 @@ function fetchAddress() {
 		.then(res => res.json())
 		.then(addresses => addresses);
 }
-
