@@ -1,0 +1,48 @@
+.grid {
+	display: grid;
+	grid-template-rows: auto;
+	grid-gap: 0.5vmax;
+	grid-template-columns: 1fr;
+	grid-template-rows: max-content;
+	grid-auto-rows: 100px;
+}
+
+@media (min-width: 576px) {
+	.grid {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+	.grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1300px) {
+	.grid {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+.address-list-container {
+	input {
+		padding: .375rem .75rem;
+		font-size: 1rem;		line-height: 1.5;
+		color: #495057;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid #ced4da;
+		border-radius: .25rem;
+		transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
+	display: grid;
+	grid-template-rows: auto 1fr;
+	grid-gap: 10px;
+}

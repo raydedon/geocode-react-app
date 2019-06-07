@@ -1,4 +1,5 @@
 import {
+	ADD_ADDRESS, DELETE_ADDRESS,
 	FETCH_ADDRESS_FAILURE,
 	FETCH_ADDRESS_REQUEST,
 	FETCH_ADDRESS_SUCCESS,
@@ -27,3 +28,14 @@ export function fetchAddress() {
 			);
 	};
 }
+
+export const addAddress = (address) => ({
+	type: ADD_ADDRESS,
+	payload: {address}
+});
+
+
+export const deleteAddress = (id) => ({
+	type: DELETE_ADDRESS,
+	payload: {id}
+});

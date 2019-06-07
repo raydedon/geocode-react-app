@@ -1,11 +1,16 @@
 import React from 'react';
+import './address.scss';
+import CardLayout from '../card/Card';
 
-const Address = ({title, address, latitude, longitude}) => (
-	<div className="address">
-		<h1>{title}</h1>
-		<div className="address-text">{address}</div>
-		<div className="longitude-text">{`${longitude}, ${latitude}`}</div>
-	</div>
-);
+const Address = (address) => {
+	let {formatted_address: formattedAddress = '', geometry: {location: {lat, lng}}} = address;
+	return (
+		<CardLayout>
+			<div className="address-text">{formattedAddress}</div>
+			<div className="longitude-text">{lat()}</div>
+			<div className="longitude-text">{lng()}</div>
+		</CardLayout>
+	);
+};
 
 export default Address;

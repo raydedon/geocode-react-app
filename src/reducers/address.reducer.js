@@ -2,6 +2,8 @@ import {
 	FETCH_ADDRESS_FAILURE,
 	FETCH_ADDRESS_REQUEST,
 	FETCH_ADDRESS_SUCCESS,
+	ADD_ADDRESS,
+	DELETE_ADDRESS
 } from '../actions/action-types';
 
 export function address(state = {address: []}, action) {
@@ -16,6 +18,22 @@ export function address(state = {address: []}, action) {
 		}
 		case FETCH_ADDRESS_FAILURE: {
 			return {...state, loadingAddress: false};
+		}
+		case ADD_ADDRESS: {
+			const {address = {}} = payload;
+			const {address: addressInState} = state;
+			return {
+				...state,
+				address: [...addressInState, address]
+			};
+		}
+		case DELETE_ADDRESS: {
+			const {id = ''} = payload;
+			const {address: addressInState} = state;
+			return {
+				...state,
+				address: addressInState.filter(i => i.id !== id)
+			};
 		}
 		default:
 			return state;
