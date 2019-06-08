@@ -3,7 +3,7 @@ import {compose, withProps} from 'recompose';
 import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 import './map.scss';
 import {connect} from 'react-redux';
-import {GERMANY} from './util';
+import {GERMANY} from '../../util';
 
 const Map = compose(
 	withProps({

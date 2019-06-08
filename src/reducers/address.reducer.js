@@ -5,8 +5,9 @@ import {
 	ADD_ADDRESS,
 	DELETE_ADDRESS
 } from '../actions/action-types';
+import {initialState} from '../util';
 
-export function address(state = {address: []}, action) {
+export function address(state = initialState.address, action) {
 	const {type, payload} = action;
 	switch(type) {
 		case FETCH_ADDRESS_REQUEST: {
