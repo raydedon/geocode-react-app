@@ -1,9 +1,9 @@
 import React from 'react';
 import './card.scss';
 
-const CardLayout = ({children, showModal}) => (
+const CardLayout = ({children, deleteAddress}) => (
 	<div className="card-layout">
-		<button type="button" className="close-btn" onClick={showModal}>×</button>
+		<button type="button" className="close-btn" onClick={deleteAddress}>×</button>
 		{children}
 	</div>
 );
