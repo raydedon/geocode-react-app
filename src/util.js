@@ -177,4 +177,4 @@ export const COUNTRY_BOUNDS = {
 	'ZW': ('Zimbabwe', (25.2642257016, -22.2716118303, 32.8498608742, -15.5077869605)),
 };
 
-export const initialState = {address: {address: []}};
+export const initialStateValue = {address: {address: []}};

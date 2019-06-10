@@ -1,0 +1,8 @@
+{
+	"App": {
+		"isCluster": true
+	},
+	"MongoDB": {
+		"connectionString": "mongodb://admin:admin123@ds143734.mlab.com:43734/project"
+	}
+}

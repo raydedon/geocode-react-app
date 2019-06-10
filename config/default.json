@@ -1,0 +1,13 @@
+{
+  "App": {
+    "webServer": {
+      "protocol": "http",
+      "host": "localhost",
+      "port": 5000
+    },
+    "isCluster": false
+  },
+  "MongoDB": {
+    "connectionString": "mongodb://localhost:27017/geocodeReactApp"
+  }
+}

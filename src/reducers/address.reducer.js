@@ -2,12 +2,12 @@ import {
 	FETCH_ADDRESS_FAILURE,
 	FETCH_ADDRESS_REQUEST,
 	FETCH_ADDRESS_SUCCESS,
-	ADD_ADDRESS,
-	DELETE_ADDRESS
+	ADD_ADDRESS_SUCCESS,
+	DELETE_ADDRESS_SUCCESS
 } from '../actions/action-types';
-import {initialState} from '../util';
+import {initialStateValue} from '../util';
 
-export function address(state = initialState.address, action) {
+export function address(state = initialStateValue.address, action) {
 	const {type, payload} = action;
 	switch(type) {
 		case FETCH_ADDRESS_REQUEST: {
@@ -20,7 +20,7 @@ export function address(state = initialState.address, action) {
 		case FETCH_ADDRESS_FAILURE: {
 			return {...state, loadingAddress: false};
 		}
-		case ADD_ADDRESS: {
+		case ADD_ADDRESS_SUCCESS: {
 			const {address = {}} = payload;
 			const {address: addressInState} = state;
 			return {
@@ -28,7 +28,7 @@ export function address(state = initialState.address, action) {
 				address: [...addressInState, address]
 			};
 		}
-		case DELETE_ADDRESS: {
+		case DELETE_ADDRESS_SUCCESS: {
 			const {id = ''} = payload;
 			const {address: addressInState} = state;
 			return {

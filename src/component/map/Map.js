@@ -17,8 +17,8 @@ const Map = compose(
 		defaultZoom={5}
 		defaultCenter={GERMANY}
 	>
-		{address.map(({geometry: {location}, id}) => (
-			<Marker position={location} key={id} />
+		{address.map(({lat, lng, id}) => (
+			<Marker position={{lat: +lat, lng: +lng}} key={id} />
 		))}
 	</GoogleMap>
 ));

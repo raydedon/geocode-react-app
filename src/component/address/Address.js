@@ -6,15 +6,16 @@ import {deleteAddress} from '../../actions/address-actions';
 
 const Address = ({
 	                 formatted_address: formattedAddress = '',
-	                 geometry: {location: {lat, lng}},
-	                 place_id: id,
+	                 lat,
+	                 lng,
+	                 id,
 	                 deleteAddress
 }) => {
 	return (
 		<CardLayout deleteAddress={() => deleteAddress(id)}>
 			<div className="address-text">{formattedAddress}</div>
-			<div className="longitude-text">{lat()}</div>
-			<div className="longitude-text">{lng()}</div>
+			<div className="longitude-text">{lat}</div>
+			<div className="longitude-text">{lng}</div>
 		</CardLayout>
 	);
 };
