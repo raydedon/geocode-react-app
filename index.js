@@ -2,17 +2,17 @@ const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const config = require('config');
 const mongoose = require('mongoose');
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
 const placesApiRouter = require('./server/routes/placesApiRoute');
 const cors = require('cors');
 
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
-mongoose.connect(config.get('MongoDB.connectionString'), {useNewUrlParser: true})
+const DATABASE_NAME = process.env.DATABASE_NAME;
+const PORT = process.env.PORT || 3000;
+
+mongoose.connect(DATABASE_NAME, {useNewUrlParser: true})
 	.then(() => {
 		console.log('Successfully connected to the database');
 	})
@@ -21,57 +21,38 @@ mongoose.connect(config.get('MongoDB.connectionString'), {useNewUrlParser: true}
 		process.exit(0);
 	});
 
-if(cluster.isMaster && config.get('App.isCluster')) {
-	console.log(`Master ${process.pid} is running`);
+const app = express();
 
-	// Fork workers.
-	for(let i = 0; i < numCPUs; i++) {
-		cluster.fork();
-	}
+let myLogger = (req, res, next) => {
+	console.log('LOGGED');
+	next();
+};
 
-	cluster.on('online', function(worker) {
-		console.log(`Worker ${worker.process.pid} is online`);
-	});
+let requestTime = (req, res, next) => {
+	req.requestTime = Date.now();
+	next();
+};
 
-	cluster.on('exit', (worker, code, signal) => {
-		console.log(`Worker ${worker.process.pid} died with code: ${code}, and signal: ${signal}`);
-		console.log('Starting a new worker');
-		cluster.fork();
-	});
-} else {
-	const app = express();
+app.use(cors());
+app.use(morgan('short'));
+app.use(myLogger);
+app.use(requestTime);
 
-	let myLogger = (req, res, next) => {
-		console.log('LOGGED');
-		next();
-	};
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-	let requestTime = (req, res, next) => {
-		req.requestTime = Date.now();
-		next();
-	};
-	
-	app.use(cors());
-	app.use(morgan('short'));
-	app.use(myLogger);
-	app.use(requestTime);
+app.use('/api/places', placesApiRouter);
 
-	app.use(cookieParser());
-	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded({extended: true}));
+app.use((req, res) => {
+	res.status(404).send('Page not found. Try another.');
+});
 
-	app.use('/api/places', placesApiRouter);
+let mode = process.env.NODE_ENV || 'development';
 
-	app.use((req, res) => {
-		res.status(404).send('Page not found. Try another.');
-	});
-
-	let mode = process.env.NODE_ENV || 'development';
-
-	app.listen(config.get('App.webServer.port'), () => {
-		console.log(`Process ${process.pid} is listening to all incoming requests 
+app.listen(+PORT, () => {
+	console.log(`Process ${process.pid} is listening to all incoming requests
 		mode: ${mode} 
-		Server listening on port: ${config.get('App.webServer.port')}`);
-	});
-}
+		Server listening on port: ${+PORT}`);
+});
 

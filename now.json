@@ -2,18 +2,14 @@
   "version": 2,
   "name": "geocode-react-app",
   "builds": [
-    {"src": "package.json", "use": "@now/static-build", "config": {"distDir": "build"}},
-    {"src": "/server/routes/placesApiRoute.js", "use": "@now/node"},
     {"src": "index.js", "use": "@now/node-server"}
   ],
   "routes": [
-    { "src": "/static/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/static/$1" },
-    { "src": "/favicon.ico", "dest": "/favicon.ico" },
-    { "src": "/asset-manifest.json", "dest": "/asset-manifest.json" },
-    { "src": "/manifest.json", "dest": "/manifest.json" },
-    { "src": "/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
-    { "src": "/service-worker.js", "headers": { "cache-control": "s-maxage=0" }, "dest": "/service-worker.js" },
-    { "src": "/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/index.html" },
-    { "src": "/api/(.*)", "dest": "/server/routes/placesApiRoute.js" }
-  ]
+    { "src": "/api/(.*)", "dest": "index.js" }
+  ],
+  "env": {
+    "DATABASE_NAME": "mongodb://admin:admin123@ds143734.mlab.com:43734/project",
+    "IS_CLUSTER": "true",
+    "PORT": "3000"
+  }
 }
