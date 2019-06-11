@@ -25,7 +25,7 @@ export function fetchAddress() {
 	return (dispatch) => {
 		dispatch(request());
 
-		addressService
+		return addressService
 			.fetchAddress()
 			.then(
 				addresses => dispatch(success(addresses)),
@@ -37,7 +37,6 @@ export function fetchAddress() {
 export function addAddress(address) {
 	const request = () => ({
 		type: ADD_ADDRESS_REQUEST,
-		payload: {address: []},
 	});
 	const success = address => ({
 		type: ADD_ADDRESS_SUCCESS,
@@ -48,7 +47,7 @@ export function addAddress(address) {
 	return dispatch => {
 		dispatch(request());
 		
-		addressService
+		return addressService
 			.addAddress(address)
 			.then(
 				address => dispatch(success(address)),
@@ -70,7 +69,7 @@ export function deleteAddress(id) {
 	return dispatch => {
 		dispatch(request());
 		
-		addressService
+		return addressService
 			.deleteAddress(id)
 			.then(
 				() => dispatch(success(id)),
