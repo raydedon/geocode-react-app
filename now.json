@@ -3,7 +3,8 @@
   "name": "geocode-react-app",
   "builds": [
     {"src": "package.json", "use": "@now/static-build", "config": {"distDir": "build"}},
-    {"src": "index.js", "use": "@now/node"}
+    {"src": "/server/routes/placesApiRoute.js", "use": "@now/node"},
+    {"src": "index.js", "use": "@now/node-server"}
   ],
   "routes": [
     { "src": "/static/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/static/$1" },
@@ -13,6 +14,6 @@
     { "src": "/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
     { "src": "/service-worker.js", "headers": { "cache-control": "s-maxage=0" }, "dest": "/service-worker.js" },
     { "src": "/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/index.html" },
-    { "src": "/api/(.*)", "dest": "index.js" }
+    { "src": "/api/(.*)", "dest": "/server/routes/placesApiRoute.js" }
   ]
 }

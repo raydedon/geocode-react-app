@@ -1,7 +1,7 @@
-const express = require('express');
+const {Router} = require('express');
 const Place = require('../controller/place.controller');
 
-const placesApiRouter = express.Router();
+const placesApiRouter = Router();
 
 placesApiRouter.post('/', Place.create);
 
