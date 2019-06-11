@@ -3,7 +3,7 @@ module.exports = {
 	clearMocks: true,
 	
 	// An array of glob patterns indicating a set of files for which coverage information should be collected
-	collectCoverageFrom: ['./src/actions/**/*.js', './src/component/**/*.js', './src/reducers/**/*.js', './src/services/**/*.js', './src/store/**/*.js'],
+	collectCoverageFrom: ['src/actions/**/*.js', 'src/component/**/*.js', 'src/reducers/**/*.js', 'src/services/**/*.js', 'src/store/**/*.js'],
 	
 	// The directory where Jest should output its coverage files
 	coverageDirectory: 'coverage',

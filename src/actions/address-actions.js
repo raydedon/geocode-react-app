@@ -43,10 +43,10 @@ export function addAddress(address) {
 		payload: {address},
 	});
 	const failure = error => ({type: ADD_ADDRESS_FAILURE, payload: {error}});
-	
+
 	return dispatch => {
 		dispatch(request());
-		
+
 		return addressService
 			.addAddress(address)
 			.then(
@@ -65,10 +65,10 @@ export function deleteAddress(id) {
 		payload: {id},
 	});
 	const failure = error => ({type: DELETE_ADDRESS_FAILURE, payload: {error}});
-	
+
 	return dispatch => {
 		dispatch(request());
-		
+
 		return addressService
 			.deleteAddress(id)
 			.then(

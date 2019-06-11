@@ -27,7 +27,7 @@ function deleteAddress(id) {
 	const deleteOptions = {
 		method: 'DELETE'
 	};
-	
+
 	return fetch(`http://localhost:5000/api/places/${id}`, deleteOptions)
 		.then(res => res.json());
 }
