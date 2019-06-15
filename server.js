@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const placesApiRouter = require('./server/routes/placesApiRoute');
 const cors = require('cors');
+const path = require('path');
 
 mongoose.Promise = global.Promise;
 
@@ -41,6 +42,7 @@ app.use(requestTime);
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, '/build')));
 
 app.use('/api/places', placesApiRouter);
 

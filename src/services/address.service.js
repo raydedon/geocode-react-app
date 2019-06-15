@@ -5,7 +5,7 @@ export const addressService = {
 };
 
 function fetchAddress() {
-	return fetch('http://localhost:5000/api/places')
+	return fetch('/api/places')
 		.then(res => res.json());
 }
 
@@ -16,7 +16,7 @@ function addAddress(address) {
 		body: JSON.stringify(address)
 	};
 
-	return fetch('http://localhost:5000/api/places', postOptions)
+	return fetch('/api/places', postOptions)
 		.then(res => res.json())
 		.then(address => {
 			return address;
@@ -28,6 +28,6 @@ function deleteAddress(id) {
 		method: 'DELETE'
 	};
 
-	return fetch(`http://localhost:5000/api/places/${id}`, deleteOptions)
+	return fetch(`/api/places/${id}`, deleteOptions)
 		.then(res => res.json());
 }
