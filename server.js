@@ -6,12 +6,13 @@ const mongoose = require('mongoose');
 const placesApiRouter = require('./server/routes/placesApiRoute');
 const cors = require('cors');
 const path = require('path');
+const config = require('config');
 
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
-const DATABASE_NAME = process.env.DATABASE_NAME;
-const PORT = process.env.PORT || 3000;
+const DATABASE_NAME = process.env.DATABASE_NAME || config.get('MongoDB.connectionString');
+const PORT = process.env.PORT || config.get('App.webServer.port') || 3000;
 
 mongoose.connect(DATABASE_NAME, {useNewUrlParser: true})
 	.then(() => {
