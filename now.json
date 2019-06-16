@@ -2,11 +2,18 @@
   "version": 2,
   "name": "geocode-react-app",
   "builds": [
-    {"src": "index.js", "use": "@now/node-server"},
-    {"src": "/server/routes/placesApiRoute.js", "use": "@now/node"}
+    {"src": "package.json", "use": "@now/static-build", "config": {"distDir": "build"}},
+    {"src": "server.js", "use": "@now/node-server"}
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "index.js" }
+    { "src": "/api/(.*)", "dest": "server.js" },
+    { "src": "/static/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/static/$1" },
+    { "src": "/favicon.ico", "dest": "/favicon.ico" },
+    { "src": "/asset-manifest.json", "dest": "/asset-manifest.json" },
+    { "src": "/manifest.json", "dest": "/manifest.json" },
+    { "src": "/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
+    { "src": "/service-worker.js", "headers": { "cache-control": "s-maxage=0" }, "dest": "/service-worker.js" },
+    { "src": "/(.*)", "headers": { "cache-control": "s-maxage=0" }, "dest": "/index.html" }
   ],
   "env": {
     "DATABASE_NAME": "mongodb://admin:admin123@ds143734.mlab.com:43734/project",
