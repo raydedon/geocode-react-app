@@ -6,7 +6,7 @@ import Address from '../address/Address';
 import {addAddress} from '../../actions/address-actions';
 import './address-list.scss';
 
-const AddressList = ({address = [], addAddress}) => {
+export const AddressList = ({address = [], addAddress}) => {
 	return (
 		<div className="address-list-container">
 			<Autocomplete

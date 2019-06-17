@@ -1,5 +1,5 @@
 import React from 'react';
-import './card.scss';
+import './card-layout.scss';
 
 const CardLayout = ({children, deleteAddress}) => (
 	<div className="card-layout">

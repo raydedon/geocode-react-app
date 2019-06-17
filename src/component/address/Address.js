@@ -1,10 +1,10 @@
 import React from 'react';
 import './address.scss';
-import CardLayout from '../card/Card';
+import CardLayout from '../card/CardLayout';
 import {connect} from 'react-redux';
 import {deleteAddress} from '../../actions/address-actions';
 
-const Address = ({
+export const Address = ({
 	                 formatted_address: formattedAddress = '',
 	                 lat,
 	                 lng,
@@ -14,12 +14,11 @@ const Address = ({
 	return (
 		<CardLayout deleteAddress={() => deleteAddress(id)}>
 			<div className="address-text">{formattedAddress}</div>
-			<div className="longitude-text">{lat}</div>
+			<div className="latitude-text">{lat}</div>
 			<div className="longitude-text">{lng}</div>
 		</CardLayout>
 	);
 };
-
 
 const mapStateToProps = (state, ownProps) => ({...ownProps});
 
