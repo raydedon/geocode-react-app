@@ -13,8 +13,7 @@ import {addressService} from '../services/address.service';
 
 export function fetchAddress() {
 	const request = () => ({
-		type: FETCH_ADDRESS_REQUEST,
-		payload: {address: []},
+		type: FETCH_ADDRESS_REQUEST
 	});
 	const success = address => ({
 		type: FETCH_ADDRESS_SUCCESS,
