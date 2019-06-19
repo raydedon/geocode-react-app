@@ -1,21 +1,30 @@
 import {expect} from 'chai';
 import {addressService} from './address.service';
-import {fetchMock} from 'fetch-mock';
+const address = [
+	{id: 'address-1'},
+	{id: 'address-2'}
+];
 
-describe('async actions', () => {
+describe('async services', () => {
+	beforeEach(function() {
+		window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ok: true, json: () => address}));
+	});
+
 	it('fetchAddress should return list of address', () => {
-		const listOfAddress = [
-			{id: 'address-1'},
-			{id: 'address-2'}
-		];
-		fetchMock.get('/api/places', listOfAddress);
-
-		expect(addressService.fetchAddress()).to.deep.equal(listOfAddress);
+		addressService.fetchAddress().then(r => {
+			expect(r).to.deep.equal(address);
+		});
 	});
 
-	it('addAddress should return list of address', () => {
+	it('addAddress should return address', () => {
+		addressService.addAddress().then(r => {
+			expect(r).to.deep.equal(address);
+		});
 	});
 
-	it('deleteAddress should return list of address', () => {
+	it('deleteAddress should delete address', () => {
+		addressService.deleteAddress().then(r => {
+			expect(r).to.deep.equal(address);
+		});
 	});
 });
