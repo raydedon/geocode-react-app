@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import {expect} from 'chai';
 import Map from '../map/Map';
 import Home from './Home';
-import {AddressList} from '../address-list/AddressList';
+import AddressList from '../address-list/AddressList';
 
 configure({adapter: new Adapter()});
 

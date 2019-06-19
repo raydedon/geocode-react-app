@@ -16,14 +16,11 @@ jest.mock('../services/address.service', () => ({
 }));
 
 describe('async actions', () => {
-	it('creates FETCH_ADDRESS_SUCCESS when fetching list of address has been done', () => {
+	it('creates FETCH_ADDRESS_SUCCESS when fetching list of address', () => {
 
 		const expectedActions = [
 			{
-				type: types.FETCH_ADDRESS_REQUEST,
-				payload: {
-					address: [],
-				},
+				type: types.FETCH_ADDRESS_REQUEST
 			},
 			{
 				type: types.FETCH_ADDRESS_SUCCESS,
