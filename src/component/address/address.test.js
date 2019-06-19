@@ -1,10 +1,8 @@
 import React from 'react';
-import {shallow, configure, mount} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {Address} from './Address';
 import CardLayout from '../card/CardLayout';
-import Adapter from 'enzyme-adapter-react-16';
 
-configure({adapter: new Adapter()});
 
 describe('<Address />', () => {
 	it('Address component should have CardLayout component', () => {

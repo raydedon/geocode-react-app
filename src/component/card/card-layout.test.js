@@ -1,10 +1,7 @@
 import React from 'react';
 import {expect} from 'chai';
-import {shallow, configure} from 'enzyme';
+import {shallow} from 'enzyme';
 import CardLayout from './CardLayout';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure({adapter: new Adapter()});
 
 describe('<CardLayout />', () => {
 	it('onClick calls the deleteAddress method', () => {
