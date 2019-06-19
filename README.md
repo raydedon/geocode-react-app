@@ -23,7 +23,7 @@
     
     c. **npm run start**. this runs the dev server.
     
-    d. You can see the application running at <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a>.
+    d. Open [http://localhost:3000](http://localhost:3000) to view it in the browser..
 
 13. Steps to run the complete react-express application.
 
@@ -37,7 +37,7 @@
     
     e. Then run **npm run server**.
     
-    f. You can view the application at <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a>.
+    f. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
     
     
 
